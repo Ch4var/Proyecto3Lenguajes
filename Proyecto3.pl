@@ -465,3 +465,95 @@ validar_genero_cancion(_) :-
     writeln('Género inválido. Por favor, ingrese un género válido.'),
     fail.
 
+guardar_datos :-
+    open('E:\\Sergio\\Proyecto3Lenguajes\\datos.txt', write, Stream),
+    findall(pelicula(Nombre, Genero, ActorPrincipal, Director), pelicula(Nombre, Genero, ActorPrincipal, Director), Peliculas),
+    write(Stream, Peliculas),
+    write(Stream, '.\n'),
+    findall(serie(Nombre, Genero, ActorPrincipal, Director), serie(Nombre, Genero, ActorPrincipal, Director), Series),
+    write(Stream, Series),
+    write(Stream, '.\n'),
+    findall(cancion(Nombre, Genero, Cantante, Productor), cancion(Nombre, Genero, Cantante, Productor), Canciones),
+    write(Stream, Canciones),
+    write(Stream, '.\n'),
+    findall(usuario(NombreUsuario,AfinidadPeliculas,AfinidadSeries,AfinidadCanciones), usuario(NombreUsuario,AfinidadPeliculas,AfinidadSeries,AfinidadCanciones), Usuarios),
+    write(Stream, Usuarios),
+    write(Stream, '.\n'),
+    findall(reproduccion(NombreUsuario,TipoProduccion ,NombreTitulo ,Calificacion), reproduccion(NombreUsuario,TipoProduccion ,NombreTitulo ,Calificacion), Reproducciones),
+    write(Stream, Reproducciones),
+    write(Stream,'.\n'),
+    close(Stream).
+
+cargar_datos :-
+    open('E:\\Sergio\\Proyecto3Lenguajes\\datos.txt', read, Stream),
+    read(Stream, Peliculas),
+    agregar_peliculas(Peliculas),
+    read(Stream, Series),
+    agregar_series(Series),
+    read(Stream, Canciones),
+    agregar_canciones(Canciones),
+    read(Stream, Usuarios),
+    agregar_usuarios(Usuarios),
+    read(Stream, Reproducciones),
+    agregar_reproducciones(Reproducciones),
+    close(Stream),
+    borrar_datos.
+
+borrar_datos :-
+    open('E:\\Sergio\\Proyecto3Lenguajes\\datos.txt', write, Stream),
+    write(Stream, '[].\n'),
+    write(Stream, '[].\n'),
+    write(Stream, '[].\n'),
+    write(Stream, '[].\n'),
+    write(Stream, '[].\n'),
+    close(Stream).
+
+agregar_peliculas([]).
+agregar_peliculas([pelicula(Nombre, Genero, ActorPrincipal, Director)|T]) :-
+    (pelicula(Nombre, Genero, ActorPrincipal, Director) ->
+        true
+    ;
+        assertz(pelicula(Nombre, Genero, ActorPrincipal, Director))
+    ),
+    agregar_peliculas(T).
+
+agregar_series([]).
+agregar_series([serie(Nombre, Genero, ActorPrincipal, Director)|T]) :-
+    (serie(Nombre, Genero, ActorPrincipal, Director) ->
+        true
+    ;
+        assertz(serie(Nombre, Genero, ActorPrincipal, Director))
+    ),
+    agregar_series(T).
+
+agregar_canciones([]).
+agregar_canciones([cancion(Nombre, Genero,Cantante ,Productor)|T]) :-
+    (cancion(Nombre, Genero,Cantante ,Productor) ->
+        true
+    ;
+        assertz(cancion(Nombre, Genero,Cantante ,Productor))
+    ),
+    agregar_canciones(T).
+
+agregar_usuarios([]).
+agregar_usuarios([usuario(NombreUsuario,AfinidadPeliculas,AfinidadSeries,AfinidadCanciones)|T]) :-
+    (usuario(NombreUsuario,AfinidadPeliculas,AfinidadSeries,AfinidadCanciones) ->
+        true
+    ;
+        assertz(usuario(NombreUsuario,AfinidadPeliculas,AfinidadSeries,AfinidadCanciones))
+    ),
+    agregar_usuarios(T).
+
+agregar_reproducciones([]).
+agregar_reproducciones([reproduccion(NombreUsuario,TipoProduccion ,NombreTitulo ,Calificacion)|T]) :-
+    (reproduccion(NombreUsuario,TipoProduccion ,NombreTitulo ,Calificacion) ->
+        true
+    ;
+        assertz(reproduccion(NombreUsuario,TipoProduccion ,NombreTitulo ,Calificacion))
+    ),
+    agregar_reproducciones(T).
+
+
+iniciar_programa :-
+    cargar_datos,
+    menu_principal.
