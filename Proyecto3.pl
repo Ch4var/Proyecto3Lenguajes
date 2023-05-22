@@ -26,7 +26,7 @@ es_genero_cancion(pop).
 es_genero_cancion(reggae).
 es_genero_cancion(hip_hop).
 
-% Base de conocimientos para almacenar las películas, series, canciones, usuarios y reproducciones
+% Base de conocimientos para almacenar las peliculas, series, canciones, usuarios y reproducciones
 :- dynamic pelicula/4.
 :- dynamic serie/4.
 :- dynamic cancion/4.
@@ -34,9 +34,9 @@ es_genero_cancion(hip_hop).
 :- dynamic reproduccion/4.
 
 menu_principal :-
-    writeln('--- Menú Principal ---'),
-    writeln('1. Entrar al Menú de Opciones Administrativas'),
-    writeln('2. Entrar al Menú de Opciones Generales'),
+    writeln('--- Menu Principal ---'),
+    writeln('1. Entrar al Menu de Opciones Administrativas'),
+    writeln('2. Entrar al Menu de Opciones Generales'),
     writeln('3. Salir del Programa'),
     read(Opcion),
     ejecutar_opcion_menu_principal(Opcion).
@@ -56,17 +56,17 @@ ejecutar_opcion_menu_principal(3) :-
     writeln('¡Hasta luego!').
 
 ejecutar_opcion_menu_principal(_) :-
-    writeln('Opción inválida. Por favor, ingrese una opción válida.'),
+    writeln('Opcion invalida. Por favor, ingrese una opcion valida.'),
     menu_principal.
 
 menu_administrativo :-
-    writeln('--- Menú Administrativo ---'),
-    writeln('1. Gestión de películas'),
-    writeln('2. Gestión de series'),
-    writeln('3. Gestión de canciones'),
-    writeln('4. Gestión de usuarios'),
+    writeln('--- Menu Administrativo ---'),
+    writeln('1. Gestion de peliculas'),
+    writeln('2. Gestion de series'),
+    writeln('3. Gestion de canciones'),
+    writeln('4. Gestion de usuarios'),
     writeln('5. Ver historial de reproducciones'),
-    writeln('6. Volver al menú principal'),
+    writeln('6. Volver al menu principal'),
     read(Opcion),
     ejecutar_opcion_menu_administrativo(Opcion).
 
@@ -97,15 +97,15 @@ ejecutar_opcion_menu_administrativo(5) :-
 ejecutar_opcion_menu_administrativo(6).
 
 ejecutar_opcion_menu_administrativo(_) :-
-    writeln('Opción inválida. Por favor, ingrese una opción válida.'),
+    writeln('Opcion invalida. Por favor, ingrese una opcion valida.'),
     menu_administrativo.
 
 menu_general :-
-    writeln('--- Menú General ---'),
-    writeln('1. Buscar producción'),
+    writeln('--- Menu General ---'),
+    writeln('1. Buscar produccion'),
     writeln('2. Recomendar'),
-    writeln('3. Registrar actividad'),
-    writeln('4. Volver al menú principal'),
+    writeln('3. Registrar reproduccion'),
+    writeln('4. Volver al menu principal'),
     read(Opcion),
     ejecutar_opcion_menu_general(Opcion).
 
@@ -124,11 +124,11 @@ ejecutar_opcion_menu_general(3) :-
 ejecutar_opcion_menu_general(4).
 
 ejecutar_opcion_menu_general(_) :-
-    writeln('Opción inválida. Por favor, ingrese una opción válida.'),
+    writeln('Opcion invalida. Por favor, ingrese una opcion valida.'),
     menu_general.
 
 mostrar_informacion_peliculas :-
-    writeln('--- Información de las Películas ---'),
+    writeln('--- Informacion de las Peliculas ---'),
     findall([Nombre, Genero, ActorPrincipal, Director], pelicula(Nombre, Genero, ActorPrincipal, Director), Peliculas),
     mostrar_peliculas(Peliculas).
 
@@ -137,7 +137,7 @@ mostrar_peliculas([[Nombre, Genero, ActorPrincipal, Director]|T]) :-
     writeln('--------------------------'),
     writeln('Nombre: '),
     writeln(Nombre),
-    writeln('Género: '),
+    writeln('Genero: '),
     writeln(Genero),
     writeln('Actor Principal: '),
     writeln(ActorPrincipal),
@@ -146,24 +146,24 @@ mostrar_peliculas([[Nombre, Genero, ActorPrincipal, Director]|T]) :-
     mostrar_peliculas(T).
 
 agregar_pelicula :-
-    writeln('--- Agregar Película ---'),
-    writeln('Ingrese el nombre de la película:'),
+    writeln('--- Agregar Pelicula ---'),
+    writeln('Ingrese el nombre de la pelicula:'),
     read(Nombre),
-    writeln('Ingrese el género de la película:'),
+    writeln('Ingrese el genero de la pelicula:'),
     read(Genero),
     validar_genero_pelicula(Genero),
-    writeln('Ingrese el actor principal de la película:'),
+    writeln('Ingrese el actor principal de la pelicula:'),
     read(ActorPrincipal),
-    writeln('Ingrese el director de la película:'),
+    writeln('Ingrese el director de la pelicula:'),
     read(Director),
     assertz(pelicula(Nombre, Genero, ActorPrincipal, Director)),
-    writeln('Película agregada con éxito.').
+    writeln('Pelicula agregada con exito.').
 
 gestion_peliculas :-
-    writeln('--- Gestión de Películas ---'),
-    writeln('1. Mostrar información de las películas'),
-    writeln('2. Agregar una nueva película'),
-    writeln('3. Volver al menú administrativo'),
+    writeln('--- Gestion de Peliculas ---'),
+    writeln('1. Mostrar informacion de las peliculas'),
+    writeln('2. Agregar una nueva pelicula'),
+    writeln('3. Volver al menu administrativo'),
     read(Opcion),
     ejecutar_opcion_gestion_peliculas(Opcion).
 
@@ -178,11 +178,11 @@ ejecutar_opcion_gestion_peliculas(2) :-
 ejecutar_opcion_gestion_peliculas(3).
 
 ejecutar_opcion_gestion_peliculas(_) :-
-    writeln('Opción inválida. Por favor, ingrese una opción válida.'),
+    writeln('Opcion invalida. Por favor, ingrese una opcion valida.'),
     gestion_peliculas.
 
 mostrar_informacion_series :-
-    writeln('--- Información de las Series ---'),
+    writeln('--- Informacion de las Series ---'),
     findall([Nombre, Genero, ActorPrincipal, Director], serie(Nombre, Genero, ActorPrincipal, Director), Series),
     mostrar_series(Series).
 
@@ -191,7 +191,7 @@ mostrar_series([[Nombre, Genero, ActorPrincipal, Director]|T]) :-
     writeln('--------------------------'),
     writeln('Nombre: '),
     writeln(Nombre),
-    writeln('Género: '),
+    writeln('Genero: '),
     writeln(Genero),
     writeln('Actor Principal: '),
     writeln(ActorPrincipal),
@@ -203,7 +203,7 @@ agregar_serie :-
     writeln('--- Agregar Serie ---'),
     writeln('Ingrese el nombre de la serie:'),
     read(Nombre),
-    writeln('Ingrese el género de la serie:'),
+    writeln('Ingrese el genero de la serie:'),
     read(Genero),
     validar_genero_serie(Genero),
     writeln('Ingrese el actor principal de la serie:'),
@@ -211,13 +211,13 @@ agregar_serie :-
     writeln('Ingrese el director de la serie:'),
     read(Director),
     assertz(serie(Nombre, Genero, ActorPrincipal, Director)),
-    writeln('Serie agregada con éxito.').
+    writeln('Serie agregada con exito.').
 
 gestion_series :-
-    writeln('--- Gestión de Series ---'),
-    writeln('1. Mostrar información de las series'),
+    writeln('--- Gestion de Series ---'),
+    writeln('1. Mostrar informacion de las series'),
     writeln('2. Agregar una nueva serie'),
-    writeln('3. Volver al menú administrativo'),
+    writeln('3. Volver al menu administrativo'),
     read(Opcion),
     ejecutar_opcion_gestion_series(Opcion).
 
@@ -232,11 +232,11 @@ ejecutar_opcion_gestion_series(2) :-
 ejecutar_opcion_gestion_series(3).
 
 ejecutar_opcion_gestion_series(_) :-
-    writeln('Opción inválida. Por favor, ingrese una opción válida.'),
+    writeln('Opcion invalida. Por favor, ingrese una opcion valida.'),
     gestion_series.
 
 mostrar_informacion_canciones :-
-    writeln('--- Información de las Canciones ---'),
+    writeln('--- Informacion de las Canciones ---'),
     findall([Nombre, Genero, Cantante, Productor], cancion(Nombre, Genero, Cantante, Productor), Canciones),
     mostrar_canciones(Canciones).
 
@@ -245,7 +245,7 @@ mostrar_canciones([[Nombre, Genero, Cantante, Productor]|T]) :-
     writeln('--------------------------'),
     writeln('Nombre: '),
     writeln(Nombre),
-    writeln('Género: '),
+    writeln('Genero: '),
     writeln(Genero),
     writeln('Cantante: '),
     writeln(Cantante),
@@ -254,24 +254,24 @@ mostrar_canciones([[Nombre, Genero, Cantante, Productor]|T]) :-
     mostrar_canciones(T).
 
 agregar_cancion :-
-    writeln('--- Agregar Canción ---'),
-    writeln('Ingrese el nombre de la canción:'),
+    writeln('--- Agregar Cancion ---'),
+    writeln('Ingrese el nombre de la cancion:'),
     read(Nombre),
-    writeln('Ingrese el género de la canción:'),
+    writeln('Ingrese el genero de la cancion:'),
     read(Genero),
     validar_genero_cancion(Genero),
-    writeln('Ingrese el cantante de la canción:'),
+    writeln('Ingrese el cantante de la cancion:'),
     read(Cantante),
-    writeln('Ingrese el productor de la canción:'),
+    writeln('Ingrese el productor de la cancion:'),
     read(Productor),
     assertz(cancion(Nombre, Genero, Cantante, Productor)),
-    writeln('Canción agregada con éxito.').
+    writeln('Cancion agregada con exito.').
 
 gestion_canciones :-
-    writeln('--- Gestión de Canciones ---'),
-    writeln('1. Mostrar información de las canciones'),
-    writeln('2. Agregar una nueva canción'),
-    writeln('3. Volver al menú administrativo'),
+    writeln('--- Gestion de Canciones ---'),
+    writeln('1. Mostrar informacion de las canciones'),
+    writeln('2. Agregar una nueva cancion'),
+    writeln('3. Volver al menu administrativo'),
     read(Opcion),
     ejecutar_opcion_gestion_canciones(Opcion).
 
@@ -286,11 +286,11 @@ ejecutar_opcion_gestion_canciones(2) :-
 ejecutar_opcion_gestion_canciones(3).
 
 ejecutar_opcion_gestion_canciones(_) :-
-    writeln('Opción inválida. Por favor, ingrese una opción válida.'),
+    writeln('Opcion invalida. Por favor, ingrese una opcion valida.'),
     gestion_canciones.
 
 mostrar_informacion_usuarios :-
-    writeln('--- Información de los Usuarios ---'),
+    writeln('--- Informacion de los Usuarios ---'),
     findall([Nombre, AfinidadPeliculas, AfinidadSeries, AfinidadCanciones], usuario(Nombre, AfinidadPeliculas, AfinidadSeries, AfinidadCanciones), Usuarios),
     mostrar_usuarios(Usuarios).
 
@@ -299,11 +299,11 @@ mostrar_usuarios([[Nombre, AfinidadPeliculas, AfinidadSeries, AfinidadCanciones]
     writeln('--------------------------'),
     writeln('Nombre: '),
     writeln(Nombre),
-    writeln('Afinidad con géneros de películas: '),
+    writeln('Afinidad con generos de peliculas: '),
     writeln(AfinidadPeliculas),
-    writeln('Afinidad con géneros de series: '),
+    writeln('Afinidad con generos de series: '),
     writeln(AfinidadSeries),
-    writeln('Afinidad con géneros de canciones: '),
+    writeln('Afinidad con generos de canciones: '),
     writeln(AfinidadCanciones),
     mostrar_usuarios(T).
 
@@ -312,17 +312,17 @@ agregar_usuario :-
     writeln('Ingrese el nombre del usuario:'),
     read(Nombre),
     findall(GeneroPelicula, es_genero_pelicula(GeneroPelicula), GenerosPeliculas),
-    preguntar_afinidad_generos(GenerosPeliculas, 'películas', AfinidadPeliculas),
+    preguntar_afinidad_generos(GenerosPeliculas, 'peliculas', AfinidadPeliculas),
     findall(GeneroSerie, es_genero_serie(GeneroSerie), GenerosSeries),
     preguntar_afinidad_generos(GenerosSeries, 'series', AfinidadSeries),
     findall(GeneroCancion, es_genero_cancion(GeneroCancion), GenerosCanciones),
     preguntar_afinidad_generos(GenerosCanciones, 'canciones', AfinidadCanciones),
     assertz(usuario(Nombre, AfinidadPeliculas, AfinidadSeries, AfinidadCanciones)),
-    writeln('Usuario agregado con éxito.').
+    writeln('Usuario agregado con exito.').
 
 preguntar_afinidad_generos([], _, []).
 preguntar_afinidad_generos([Genero|T], TipoProduccion, [Afinidad|AT]) :-
-    write('Ingrese su grado de afinidad con el género '),
+    write('Ingrese su grado de afinidad con el genero '),
     write(Genero),
     write(' de '),
     write(TipoProduccion),
@@ -341,48 +341,136 @@ mostrar_reproducciones([[NombreUsuario, TipoProduccion, NombreTitulo, Calificaci
     writeln('--------------------------'),
     writeln('Nombre del usuario: '),
     writeln(NombreUsuario),
-    writeln('Tipo de producción: '),
+    writeln('Tipo de produccion: '),
     writeln(TipoProduccion),
-    writeln('Nombre del título: '),
+    writeln('Nombre del titulo: '),
     writeln(NombreTitulo),
-    writeln('Calificación asignada: '),
+    writeln('Calificacion asignada: '),
     writeln(Calificacion),
     mostrar_reproducciones(T).
 
 buscar_produccion :-
-    writeln('--- Buscar Producción ---'),
+    writeln('--- Buscar Produccion ---'),
     writeln('Ingrese el texto a buscar:'),
     read(Texto),
     findall([Nombre, Genero, ActorPrincipal, Director], (pelicula(Nombre, Genero, ActorPrincipal, Director), (sub_atom(Nombre, _, _, _, Texto) ; sub_atom(Genero, _, _, _, Texto) ; sub_atom(ActorPrincipal, _, _, _, Texto))), Peliculas),
     findall([Nombre, Genero, ActorPrincipal, Director], (serie(Nombre, Genero, ActorPrincipal, Director), (sub_atom(Nombre, _, _, _, Texto) ; sub_atom(Genero, _, _, _, Texto))), Series),
     findall([Nombre, Genero, Cantante, Productor], (cancion(Nombre, Genero, Cantante, Productor), (sub_atom(Nombre, _, _, _, Texto) ; sub_atom(Cantante, _, _, _, Texto))), Canciones),
-    writeln('--- Resultados de la búsqueda ---'),
+    writeln('--- Resultados de la busqueda ---'),
     mostrar_peliculas(Peliculas),
     mostrar_series(Series),
     mostrar_canciones(Canciones).
 
-registrar_reproduccion :-
-    writeln('--- Registrar Reproducción ---'),
+recomendar :-
+    writeln('--- Recomendar ---'),
     writeln('Ingrese el nombre del usuario:'),
     read(NombreUsuario),
     validar_usuario(NombreUsuario),
-    writeln('Ingrese el tipo de producción (película, serie o canción):'),
+    findall([Nombre, Genero, ActorPrincipal, Director], pelicula(Nombre, Genero, ActorPrincipal, Director), Peliculas),
+    findall([Nombre, Genero, ActorPrincipal, Director], serie(Nombre, Genero, ActorPrincipal, Director), Series),
+    findall([Nombre, Genero, Cantante, Productor], cancion(Nombre, Genero, Cantante, Productor), Canciones),
+    calcular_puntajes_producciones(Peliculas, NombreUsuario, 'pelicula', PuntajesPeliculas),
+    calcular_puntajes_producciones(Series, NombreUsuario, 'serie', PuntajesSeries),
+    calcular_puntajes_producciones(Canciones, NombreUsuario, 'cancion', PuntajesCanciones),
+    append(PuntajesPeliculas, PuntajesSeries, Puntajes1),
+    append(Puntajes1, PuntajesCanciones, Puntajes),
+    sort(2,@>= ,Puntajes,PuntajesOrdenados),
+    writeln('--- Recomendaciones ---'),
+    mostrar_recomendaciones(PuntajesOrdenados).
+
+calcular_puntajes_producciones([], _, _, []).
+calcular_puntajes_producciones([[NombreProduccion, GeneroProduccion, ActorCantanteProduccion, ProductorDirectorProduccion]|T], NombreUsuario,TipoProduccion , [[TipoProduccion ,NombreProduccion ,GeneroProduccion ,ActorCantanteProduccion ,ProductorDirectorProduccion ,Puntaje]|PT]) :-
+    usuario(NombreUsuario,AfinidadPeliculas,AfinidadSeries,AfinidadCanciones),
+    (TipoProduccion == 'pelicula' ->
+        nth0(IndexGenero,AfinidadPeliculas ,AfinidadGenero),
+        es_genero_pelicula(GeneroProduccion),
+        nth0(IndexGenero,[accion ,comedia ,drama ,fantasia ,terror ,suspenso ,musical ,historia] ,GeneroProduccion)
+        ;
+        (TipoProduccion == 'serie' ->
+            nth0(IndexGenero,AfinidadSeries ,AfinidadGenero),
+            es_genero_serie(GeneroProduccion),
+            nth0(IndexGenero,[accion ,comedia ,drama ,fantasia ,terror ,suspenso ,musical ,historia,reality] ,GeneroProduccion)
+            ;
+            nth0(IndexGenero,AfinidadCanciones,AfinidadGenero),
+            es_genero_cancion(GeneroProduccion),
+            nth0(IndexGenero,[clasica,jazz,rhythm_and_blues,rock_and_roll,country,pop,reggae,hip_hop] ,GeneroProduccion)
+        )
+    ),
+    findall(Calificacion,(reproduccion(NombreUsuario,TipoProduccion,Nombrereproduccion,_),Nombrereproduccion == NombreProduccion),ReproduccionesUsuario),
+    length(ReproduccionesUsuario,CantidadReproduccionesUsuario),
+    (CantidadReproduccionesUsuario == 0 ->
+        PuntajeReproducciones = 3
+        ;
+        (CantidadReproduccionesUsuario == 1 ->
+            PuntajeReproducciones = 1
+            ;
+            PuntajeReproducciones = 2
+        )
+    ),
+    findall(Calificacion, (reproduccion(NombreUsuario, TipoReproduccion, NombreTitulo, Calificacion), TipoReproduccion == TipoProduccion, (TipoReproduccion == 'pelicula' -> pelicula(NombreTitulo, _, ActorCantanteProduccion, _) ; (TipoReproduccion == 'serie' -> serie(NombreTitulo, _, ActorCantanteProduccion, _) ; cancion(NombreTitulo, _, ActorCantanteProduccion, _)))), ReproduccionesActorCantante),
+    ((ReproduccionesActorCantante \== []) ->
+        last(ReproduccionesActorCantante,PuntajeActorCantante)
+        ;
+        PuntajeActorCantante is 0
+    ),
+
+findall(Calificacion, (reproduccion(NombreUsuario, TipoReproduccion, NombreTitulo, Calificacion), TipoReproduccion == TipoProduccion, (TipoReproduccion == 'pelicula' -> pelicula(NombreTitulo, _, _, ProductorDirectorProduccion) ; (TipoReproduccion == 'serie' -> serie(NombreTitulo, _, _, ProductorDirectorProduccion) ; cancion(NombreTitulo, _, _, ProductorDirectorProduccion)))), ReproduccionesProductorDirector),
+    ((ReproduccionesProductorDirector \== []) ->
+        last(ReproduccionesProductorDirector,PuntajeProductorDirector)
+        ;
+        PuntajeProductorDirector is 0
+    ),
+
+    Puntaje is AfinidadGenero + PuntajeReproducciones + PuntajeProductorDirector + PuntajeActorCantante * 2,
+    calcular_puntajes_producciones(T, NombreUsuario,TipoProduccion , PT).
+
+mostrar_recomendaciones([]).
+mostrar_recomendaciones([[Tipo,Nombre,Genero,CantanteActor,DirecctorProductor,Puntuacion]|T]) :-
+   writeln('--------------------------'),
+   writeln('Tipo: '),
+   writeln(Tipo),
+   writeln('Nombre: '),
+   writeln(Nombre),
+   writeln('Genero: '),
+   writeln(Genero),
+   (Tipo == 'cancion' ->
+       write('Cantante: ')
+       ;
+       write('Actor Principal: ')
+   ),
+   writeln(CantanteActor),
+   (Tipo == 'cancion' ->
+       write('Productor: ')
+       ;
+       write('Director: ')
+   ),
+   writeln(DirecctorProductor),
+   writeln('Puntuacion obtenida: '),
+   writeln(Puntuacion),
+   mostrar_recomendaciones(T).
+
+registrar_reproduccion :-
+    writeln('--- Registrar Reproduccion ---'),
+    writeln('Ingrese el nombre del usuario:'),
+    read(NombreUsuario),
+    validar_usuario(NombreUsuario),
+    writeln('Ingrese el tipo de produccion (pelicula, serie o cancion):'),
     read(TipoProduccion),
     validar_tipo_produccion(TipoProduccion),
-    writeln('Ingrese el nombre del título:'),
+    writeln('Ingrese el nombre del titulo:'),
     read(NombreTitulo),
     validar_titulo(TipoProduccion, NombreTitulo),
-    writeln('Ingrese la calificación asignada (de 1 a 5):'),
+    writeln('Ingrese la calificacion asignada (de 1 a 5):'),
     read(Calificacion),
     validar_calificacion(Calificacion),
     assertz(reproduccion(NombreUsuario, TipoProduccion, NombreTitulo, Calificacion)),
-    writeln('Reproducción registrada con éxito.').
+    writeln('Reproduccion registrada con exito.').
 
 validar_usuario(NombreUsuario) :-
     usuario(NombreUsuario, _, _, _).
 
 validar_usuario(_) :-
-    writeln('Usuario inválido. Por favor ingrese un usuario válido.'),
+    writeln('Usuario invalido. Por favor ingrese un usuario valido.'),
     fail.
 
 validar_tipo_produccion(pelicula).
@@ -390,7 +478,7 @@ validar_tipo_produccion(serie).
 validar_tipo_produccion(cancion).
 
 validar_tipo_produccion(_) :-
-    writeln('Tipo de producción inválido. Por favor ingrese un tipo de producción válido.'),
+    writeln('Tipo de produccion invalido. Por favor ingrese un tipo de produccion valido.'),
     fail.
 
 validar_titulo(pelicula, NombreTitulo) :-
@@ -403,7 +491,7 @@ validar_titulo(cancion, NombreTitulo) :-
     cancion(NombreTitulo, _, _, _).
 
 validar_titulo(_, _) :-
-    writeln('Título inválido. Por favor ingrese un título válido.'),
+    writeln('Titulo invalido. Por favor ingrese un titulo valido.'),
     fail.
 
 validar_calificacion(Calificacion) :-
@@ -411,7 +499,7 @@ validar_calificacion(Calificacion) :-
     between(1, 5, Calificacion).
 
 validar_calificacion(_) :-
-   writeln('Calificación inválida. Por favor ingrese una calificación válida.'),
+   writeln('Calificacion invalida. Por favor ingrese una calificacion valida.'),
    fail.
 
 validar_afinidad(Afinidad) :-
@@ -419,14 +507,14 @@ validar_afinidad(Afinidad) :-
     between(1, 10, Afinidad).
 
 validar_afinidad(_) :-
-    writeln('Afinidad inválida. Por favor ingrese un número del 1 al 10.'),
+    writeln('Afinidad invalida. Por favor ingrese un numero del 1 al 10.'),
     fail.
 
 gestion_usuarios :-
-    writeln('--- Gestión de Usuarios ---'),
-    writeln('1. Mostrar información de los usuarios'),
+    writeln('--- Gestion de Usuarios ---'),
+    writeln('1. Mostrar informacion de los usuarios'),
     writeln('2. Agregar un nuevo usuario'),
-    writeln('3. Volver al menú administrativo'),
+    writeln('3. Volver al menu administrativo'),
     read(Opcion),
     ejecutar_opcion_gestion_usuarios(Opcion).
 
@@ -441,32 +529,32 @@ ejecutar_opcion_gestion_usuarios(2) :-
 ejecutar_opcion_gestion_usuarios(3).
 
 ejecutar_opcion_gestion_usuarios(_) :-
-   writeln('Opción inválida. Por favor ingrese una opción válida.'),
+   writeln('Opcion invalida. Por favor ingrese una opcion valida.'),
    gestion_usuarios.
 
 validar_genero_pelicula(Genero) :-
     es_genero_pelicula(Genero).
 
 validar_genero_pelicula(_) :-
-    writeln('Género inválido. Por favor, ingrese un género válido.'),
+    writeln('Genero invalido. Por favor, ingrese un genero valido.'),
     fail.
 
 validar_genero_serie(Genero) :-
     es_genero_serie(Genero).
 
 validar_genero_serie(_) :-
-    writeln('Género inválido. Por favor, ingrese un género válido.'),
+    writeln('Genero invalido. Por favor, ingrese un genero valido.'),
     fail.
 
 validar_genero_cancion(Genero) :-
     es_genero_cancion(Genero).
 
 validar_genero_cancion(_) :-
-    writeln('Género inválido. Por favor, ingrese un género válido.'),
+    writeln('Genero invalido. Por favor, ingrese un genero valido.'),
     fail.
 
 guardar_datos :-
-    open('E:\\Sergio\\Proyecto3Lenguajes\\datos.txt', write, Stream),
+    open('G:\\proyecto3Lenguajes\\datos.txt', write, Stream),
     findall(pelicula(Nombre, Genero, ActorPrincipal, Director), pelicula(Nombre, Genero, ActorPrincipal, Director), Peliculas),
     write(Stream, Peliculas),
     write(Stream, '.\n'),
@@ -485,7 +573,7 @@ guardar_datos :-
     close(Stream).
 
 cargar_datos :-
-    open('E:\\Sergio\\Proyecto3Lenguajes\\datos.txt', read, Stream),
+    open('G:\\proyecto3Lenguajes\\datos.txt', read, Stream),
     read(Stream, Peliculas),
     agregar_peliculas(Peliculas),
     read(Stream, Series),
@@ -500,7 +588,7 @@ cargar_datos :-
     borrar_datos.
 
 borrar_datos :-
-    open('E:\\Sergio\\Proyecto3Lenguajes\\datos.txt', write, Stream),
+    open('G:\\proyecto3Lenguajes\\datos.txt', write, Stream),
     write(Stream, '[].\n'),
     write(Stream, '[].\n'),
     write(Stream, '[].\n'),
